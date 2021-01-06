@@ -11,6 +11,7 @@ class Product {
 class CartProduct extends Product {
     constructor(product) {
         super(product.image, product.price, product.name, product.description)
+        this.product_id = product.id;
         this.amount = 1;
     }
 }
@@ -19,49 +20,59 @@ let id = 1;
 let products = []
 let cartProducts = []
 
+/*Get local storage for cart products*/
+let savedProducts = JSON.parse(localStorage.getItem("savedProducts"));
+
+if (savedProducts) {
+    cartProducts = savedProducts
+} 
+
+
+
 let product1 = new Product(
     "<img src='./../img/product1.jpg'>", 
-    269, 
-    "Calathea", 
-    "En vacker grön växt som levereras i en trendig terrakottakruka."
+    349, 
+    "Cast-Iron Plant", 
+    "Cast-iron plants are hardy plants that can withstand a range of light and soil conditions."
 )
 let product2 = new Product(
     "<img src='./../img/product2.jpg'>", 
-    269, 
-    "Calathea", 
-    "En vacker grön växt som levereras i en trendig terrakottakruka."
+    189, 
+    "Spider Plant", 
+    "These plants have a lot of long, skinny leaves that poke out from their pots."
 )
 let product3 = new Product(
     "<img src='./../img/product3.jpg'>", 
     269, 
     "Calathea", 
-    "En vacker grön växt som levereras i en trendig terrakottakruka."
+    "Calathea are one of the best houseplants you can have in your home due to their variety of sizes,"
 )
 let product4 = new Product(
     "<img src='./../img/product4.jpg'>", 
-    269, 
-    "Calathea", 
-    "En vacker grön växt som levereras i en trendig terrakottakruka."
+    189, 
+    "Echeveria", 
+    "The echeveria is one of the most common types of succulents. Little plants like these are more commonly found at office and home desks due to their easy care and small size."
 )
 let product5 = new Product(
     "<img src='./../img/product5.jpg'>", 
-    269, 
-    "Calathea", 
-    "En vacker grön växt som levereras i en trendig terrakottakruka."
+    169, 
+    "Jade Plant", 
+    "Jade plants are most known for their thick, oval-shaped leaves. Jade plants can live for years as long as they are given the proper care."
 )
 let product6 = new Product(
     "<img src='./../img/product6.jpg'>", 
-    269, 
-    "Calathea", 
+    319, 
+    "Lemon", 
     "En vacker grön växt som levereras i en trendig terrakottakruka."
 )
 
 $(function () {
     listProducts()
     createProducts()
+    cart()
     createCartProducts()
-    createCart()
     cartActive()
+    notice()
 })
 
 function listProducts() {
@@ -87,14 +98,26 @@ function createProducts() {
 }
 
 function clickAddProducts(e) {
-    let theCartProduct = new CartProduct(e.data.p);
-    cartProducts.push(theCartProduct)
-    console.log(cartProducts)
+    let existingCartProduct = cartProducts.filter((item) => {
+        return item.product_id === e.data.p.id;
+    });
+    
+    if(
+        existingCartProduct.length === 0
+    ) {
+        let theCartProduct = new CartProduct(e.data.p);
+        cartProducts.push(theCartProduct)
+        localStorage.setItem("savedProducts", JSON.stringify(cartProducts));
+    } else {
+        existingCartProduct[0].amount++;
+        localStorage.setItem("savedProducts", JSON.stringify(cartProducts));
+    }
 
     createCartProducts()
+    notice()
 }
 
-function createCart() {
+function cart() {
     let cartContainer = $('#cart-container').addClass('cart-container')
 
     $('<h3>').addClass('total-price').html("Total Price:" + " " + totalPrice() ).appendTo(cartContainer)
@@ -122,7 +145,7 @@ function createCartProducts() {
         amountPlus.on('click', {plus: cartProduct}, plusAmount)
 
         let amountMinus = $('<button>').addClass('c-minus').html("-").appendTo(cartID)
-        amountMinus.on('click', {minus: cartProduct, cartIndex: i}, minusAmount)
+        amountMinus.on('click', {minus: cartProduct, cartIndex: i}, minusAmount)    
 
         let deleteFromCart = $('<button>').addClass('delete-from-cart').html("Delete").appendTo(cartID)
         deleteFromCart.on('click', {c: i}, clickDeleteCartProducts) 
@@ -131,42 +154,6 @@ function createCartProducts() {
     })
     
     $('.total-price').html("Total Price:" + " " + totalPrice() )
-}
-
-function clickDeleteCartProducts(e) {
-    cartProducts.splice(e.data.c, 1)
-    console.log(cartProducts)
-    createCartProducts()
-}
-
-function plusAmount(e) {
-    e.data.plus.amount++;
-    
-    createCartProducts()
-}
-
-function minusAmount(e) {
-     e.data.minus.amount--;
-    if (e.data.minus.amount === 0) {
-        cartProducts.splice(e.data.cartIndex, 1)
-    } 
-
-    createCartProducts()
-}
-
-function totalPrice() {
-    let sum = 0
-    cartProducts.forEach((item, i) => {
-        sum += item.price * item.amount
-    })
-
-    return sum
-    
-    //let sum = cartProducts.reduce(function(a, b) {
-        //return a + b.total
-      //}, 0);
-
-      //return sum
 }
 
 function cartActive() {
@@ -179,3 +166,53 @@ function cartActive() {
         }
     })
 }
+
+function clickDeleteCartProducts(e) {
+    cartProducts.splice(e.data.c, 1)
+    console.log(cartProducts)
+
+    localStorage.setItem("savedProducts", JSON.stringify(cartProducts));
+
+    createCartProducts()
+    notice()
+}
+
+function plusAmount(e) {
+    e.data.plus.amount++;
+
+    localStorage.setItem("savedProducts", JSON.stringify(cartProducts));
+    
+    createCartProducts()
+    notice()
+}
+
+function minusAmount(e) {
+     e.data.minus.amount--;
+    if (e.data.minus.amount === 0) {
+        cartProducts.splice(e.data.cartIndex, 1)
+    } 
+
+    localStorage.setItem("savedProducts", JSON.stringify(cartProducts));
+
+    createCartProducts()
+    notice()
+}
+
+function totalPrice() {
+    let sum = 0
+    cartProducts.forEach((item, i) => {
+        sum += item.price * item.amount
+    })
+
+    return sum
+}
+
+function notice() {
+    let set = cartProducts.reduce(function (a, b){
+        return a + b.amount}, 0) 
+      
+    $('.notice').html(set)
+}
+
+
+

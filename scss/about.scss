@@ -1,0 +1,11 @@
+.delivery-image {
+    width: 100%;
+    height: 450px;
+    background-image: url("/img/delivery.jpg");
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

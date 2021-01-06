@@ -3,7 +3,8 @@
 
 body {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  position: relative; }
 
 /*Header*/
 header {
@@ -38,7 +39,21 @@ header {
     header nav ul img {
       width: 20px;
       height: 20px;
-      display: inline; }
+      display: inline;
+      position: absolute; }
+    header nav ul li.notice {
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      color: #ffffff;
+      background: #a10000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 10px;
+      right: 0px;
+      border-radius: 50%; }
 
 .mainsection {
   display: flex;
@@ -79,6 +94,8 @@ header {
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch; }
+    .slider .slides #slide-1, .slider .slides #slide-2, .slider .slides #slide-3, .slider .slides #slide-4, .slider .slides #slide-5, .slider .slides #slide-6 {
+      z-index: -1; }
     .slider .slides div {
       scroll-snap-align: start;
       flex-shrink: 0;
@@ -130,7 +147,6 @@ header {
 
 /*Footer*/
 footer {
-  position: relative;
   height: 130px;
   width: 100%;
   background: #645348;
@@ -141,7 +157,9 @@ footer {
   flex-direction: row;
   padding: 30px 30px;
   box-sizing: border-box;
-  z-index: -1; }
+  z-index: -1;
+  position: absolute;
+  bottom: -180px; }
   footer .contactinfo {
     width: 50%;
     display: flex;
@@ -159,15 +177,15 @@ footer {
       padding: 10px;
       font-size: 20px;
       width: 20px;
+      height: 20px;
       text-align: center;
       text-decoration: none;
       margin: 3px 3px;
       border-radius: 50%; }
     footer .socialmedia .fa:hover {
-      opacity: 0.3; }
+      opacity: 0.6; }
     footer .socialmedia .fa-facebook,
     footer .socialmedia .fa-twitter,
     footer .socialmedia .fa-instagram {
       background: #1c3a1a;
-      opacity: 0.6;
       color: #ffffff; }
