@@ -1,37 +1,7 @@
-import { cart } from './cart.js';
-import { cartActive } from './cart.js';
-import { createCartProducts } from './cart.js';
-import { notice } from './cart.js';
+import Product from './classes/product.js'
+import { addToCart, createCartProducts, notice } from './cart.js';
 
-class Product {
-    constructor(image, price, name, description) {
-      this.id = id++;
-      this.image = image;
-      this.price = price;
-      this.name = name;
-      this.description = description;
-    }
-}
-
-class CartProduct extends Product {
-    constructor(product) {
-        super(product.image, product.price, product.name, product.description)
-        this.product_id = product.id;
-        this.amount = 1;
-    }
-}
-
-let id = 1;
 let products = []
-let cartProducts = []
-
-/*Get local storage for cart products*/
-let savedProducts = JSON.parse(localStorage.getItem("savedProducts"));
-
-if (savedProducts) {
-    cartProducts = savedProducts
-} 
-
 
 let product1 = new Product(
     "<img src='./../img/product1.jpg'>", 
@@ -73,13 +43,15 @@ let product6 = new Product(
 $(function () {
     listProducts()
     createProducts()
+    createCartProducts()
+    notice()
 })
 
-export function listProducts() {
+function listProducts() {
    products.push(product1, product2, product3, product4, product5, product6)
 }
 
-export function createProducts() {
+function createProducts() {
     let productList = $('#product-list').addClass('p-list')
     
     $.each(products, (i, product) => {
@@ -97,25 +69,13 @@ export function createProducts() {
     })
 }
 
-export function clickAddProducts(e) {
-    let existingCartProduct = cartProducts.filter((item) => {
-        return item.product_id === e.data.p.id;
-    });
-    
-    if(
-        existingCartProduct.length === 0
-    ) {
-        let theCartProduct = new CartProduct(e.data.p);
-        cartProducts.push(theCartProduct)
-        localStorage.setItem("savedProducts", JSON.stringify(cartProducts));
-    } else {
-        existingCartProduct[0].amount++;
-        localStorage.setItem("savedProducts", JSON.stringify(cartProducts));
-    }
-
+function clickAddProducts(e) {
+    addToCart(e);
     createCartProducts()
     notice()
 }
+
+
 
 
 

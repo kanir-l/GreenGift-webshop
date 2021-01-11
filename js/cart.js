@@ -1,27 +1,8 @@
-import { listProducts } from './store.js';
-import { clickAddProducts } from './store.js';
-
-class Product {
-    constructor(image, price, name, description) {
-      this.id = id++;
-      this.image = image;
-      this.price = price;
-      this.name = name;
-      this.description = description;
-    }
-}
-
-class CartProduct extends Product {
-    constructor(product) {
-        super(product.image, product.price, product.name, product.description)
-        this.product_id = product.id;
-        this.amount = 1;
-    }
-}
+import CartProduct from './classes/cart_product.js'
 
 let id = 1;
 let products = []
-let cartProducts = []
+export let cartProducts = []
 
 /*Get local storage for cart products*/
 let savedProducts = JSON.parse(localStorage.getItem("savedProducts"));
@@ -87,6 +68,23 @@ export function createCartProducts() {
     $('.total-price').html("Total Price:" + " " + totalPrice() )
 }
 
+export function addToCart(e) {
+    let existingCartProduct = cartProducts.filter((item) => {
+        return item.product_id === e.data.p.id;
+    });
+    
+    if(
+        existingCartProduct.length === 0
+    ) {
+        let theCartProduct = new CartProduct(e.data.p);
+        cartProducts.push(theCartProduct)
+        localStorage.setItem("savedProducts", JSON.stringify(cartProducts));
+    } else {
+        existingCartProduct[0].amount++;
+        localStorage.setItem("savedProducts", JSON.stringify(cartProducts));
+    }
+}
+
 export function clickDeleteCartProducts(e) {
     cartProducts.splice(e.data.c, 1)
     console.log(cartProducts)
@@ -128,6 +126,7 @@ export function totalPrice() {
 }
 
 export function notice() {
+    //console.log('cartProducts', cartProducts);
     let set = cartProducts.reduce(function (a, b){
         return a + b.amount}, 0) 
       

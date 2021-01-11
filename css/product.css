@@ -1,0 +1,14 @@
+/*Hero Image*/
+.hero-image-product {
+  width: 100%;
+  height: 100px; }
+
+.yourproduct-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 30px;
+  padding: 30px;
+  border: solid 1px #d6d6d6; }
+  .yourproduct-container h2 {
+    text-align: center; }
