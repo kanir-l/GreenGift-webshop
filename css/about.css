@@ -1,4 +1,9 @@
-.delivery-image {
+section {
+  margin: 30px;
+  padding: 30px;
+  border: solid 1px #d6d6d6; }
+
+.hero-image-delivery {
   width: 100%;
   height: 450px;
   background-image: url("/img/delivery.jpg");
