@@ -3,12 +3,53 @@
   width: 100%;
   height: 100px; }
 
-.yourproduct-container {
+.checkout-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   margin: 30px;
   padding: 30px;
   border: solid 1px #d6d6d6; }
-  .yourproduct-container h2 {
-    text-align: center; }
+  .checkout-container #userinfo-container #userform {
+    width: 100%; }
+    .checkout-container #userinfo-container #userform h1 {
+      background: #1c3a1a;
+      color: #ffffff;
+      opacity: 0.6;
+      height: 45px;
+      width: 600px;
+      line-height: 45px;
+      vertical-align: middle;
+      padding-left: 12px; }
+    .checkout-container #userinfo-container #userform #email, .checkout-container #userinfo-container #userform #address {
+      width: 280px;
+      height: 30px;
+      display: block;
+      background: #eeeeee;
+      border: none;
+      margin-top: 2px; }
+    .checkout-container #userinfo-container #userform #address {
+      width: 600px; }
+    .checkout-container #userinfo-container #userform .name-holder, .checkout-container #userinfo-container #userform .post-holder {
+      width: 600px;
+      display: flex;
+      justify-content: space-between; }
+      .checkout-container #userinfo-container #userform .name-holder .fname #fname, .checkout-container #userinfo-container #userform .name-holder .fname #lname, .checkout-container #userinfo-container #userform .name-holder .fname #post, .checkout-container #userinfo-container #userform .name-holder .fname #town, .checkout-container #userinfo-container #userform .name-holder .lname #fname, .checkout-container #userinfo-container #userform .name-holder .lname #lname, .checkout-container #userinfo-container #userform .name-holder .lname #post, .checkout-container #userinfo-container #userform .name-holder .lname #town, .checkout-container #userinfo-container #userform .name-holder .post #fname, .checkout-container #userinfo-container #userform .name-holder .post #lname, .checkout-container #userinfo-container #userform .name-holder .post #post, .checkout-container #userinfo-container #userform .name-holder .post #town, .checkout-container #userinfo-container #userform .name-holder .town #fname, .checkout-container #userinfo-container #userform .name-holder .town #lname, .checkout-container #userinfo-container #userform .name-holder .town #post, .checkout-container #userinfo-container #userform .name-holder .town #town, .checkout-container #userinfo-container #userform .post-holder .fname #fname, .checkout-container #userinfo-container #userform .post-holder .fname #lname, .checkout-container #userinfo-container #userform .post-holder .fname #post, .checkout-container #userinfo-container #userform .post-holder .fname #town, .checkout-container #userinfo-container #userform .post-holder .lname #fname, .checkout-container #userinfo-container #userform .post-holder .lname #lname, .checkout-container #userinfo-container #userform .post-holder .lname #post, .checkout-container #userinfo-container #userform .post-holder .lname #town, .checkout-container #userinfo-container #userform .post-holder .post #fname, .checkout-container #userinfo-container #userform .post-holder .post #lname, .checkout-container #userinfo-container #userform .post-holder .post #post, .checkout-container #userinfo-container #userform .post-holder .post #town, .checkout-container #userinfo-container #userform .post-holder .town #fname, .checkout-container #userinfo-container #userform .post-holder .town #lname, .checkout-container #userinfo-container #userform .post-holder .town #post, .checkout-container #userinfo-container #userform .post-holder .town #town {
+        width: 290px;
+        height: 30px;
+        margin-bottom: 20px;
+        margin-top: 2px;
+        background: #eeeeee;
+        border: none; }
+    .checkout-container #userinfo-container #userform button#save {
+      width: 145px;
+      height: 30px;
+      color: #ffffff;
+      background: #645348;
+      border: none;
+      margin: 0 auto;
+      margin-bottom: 30px;
+      margin-top: 20px; }
+  .checkout-container #cart-container {
+    width: 25%; }
+    .checkout-container #cart-container .c-image img {
+      width: 200px; }

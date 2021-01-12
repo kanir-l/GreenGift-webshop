@@ -23,7 +23,9 @@ export function cart() {
 
     $('<h3>').addClass('total-price').html("Total Price:" + " " + totalPrice() ).appendTo(cartContainer)
 
-    $('<button>').addClass('purchase-button').html("Continue to Payment").appendTo(cartContainer)
+    $('<button>').addClass('purchase-button').html("Continue to Payment").appendTo(cartContainer).on('click', function() {
+        location.href = "checkout.html";
+    })
 }
 
 
