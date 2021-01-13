@@ -1,4 +1,4 @@
-import CartProduct from './classes/cart_product.js'
+import CartProduct from './classes/cartProduct.js'
 
 let id = 1;
 let products = []
