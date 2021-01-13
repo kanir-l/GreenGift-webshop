@@ -41,18 +41,16 @@
 
     </header>
 
-   
-
     <!--Hero-->
     <div class="hero-image-product">
     </div>
 
     <section class = "checkout-container">
-      <!--Context Section-->
-   
       <div id="userinfo-container">
+
+        <!--Billing Info-->
         <form id="userform">
-          <h1>Customer information</h1>
+          <h1>Billing information</h1>
           <label for="email">Enter your email:</label>
           <input type="email" id="email" name="email" required /><br />
 
@@ -81,14 +79,28 @@
             </div>
           </div>
 
-          <label for="address">Address:</label><br />
-          <input
-            type="text"
-            id="address"
-            name="address"
-            value=""
-            required
-          /><br />
+          <div class="address-holder">
+            <div class="address1">
+              <label for="address">Address 1:</label><br />
+              <input
+                type="text"
+                id="address1"
+                name="address"
+                value=""
+                required
+              /><br />
+            </div>
+            <div class="address2">
+              <label for="address">Address 2:</label><br />
+              <input
+                type="text"
+                id="address2"
+                name="address"
+                value=""
+                required
+              /><br />
+            </div>
+          </div>
 
           <div class="post-holder">
             <div class="post">
@@ -116,15 +128,61 @@
             </div>
           </div>
 
-          <button id="save">Save</button>
+          <label class="checkbox">
+            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+          </label>
+
+          <input type="submit" value="Save" id="save">
         </form>
+
+        <!--Payment Info-->
+        <div id="paymentform">
+          <h1>Payment</h1>
+              <label for="fname">Accepted Cards</label>
+              <div class="icon-container">
+                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                <i class="fa fa-cc-amex" style="color:blue;"></i>
+                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                <i class="fa fa-cc-discover" style="color:orange;"></i>
+              </div>
+
+              <label for="cname">Name on Card</label>
+              <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+
+              <label for="ccnum">Credit card number</label>
+              <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+
+              <div class="exp-holder">
+                <div class="expmonth">
+                  <label for="expmonth">Exp Month</label>
+                  <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                </div>
+                <div class="expyear">
+                  <div class="row">
+                    <div class="col-50">
+                      <label for="expyear">Exp Year</label>
+                      <input type="text" id="expyear" name="expyear" placeholder="2018">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-50">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="352">
+              </div>
+
+              <input type="submit" value="Continue to checkout" id="submit">
+
+          </div>
+        </div>
       </div>
 
       <!--Cart-->
       <div id = "cart-container" class = "cart-container">
-      <h1 class = "cart-text-head">Your Shopping Cart</h1>
-      <div id = "cart-list"></div>
-    </div>
+        <h1 class = "cart-text-head">Your Shopping Cart</h1>
+        <div id = "cart-list"></div>
+      </div>
     </section>
 
     <!--Footer-->

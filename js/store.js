@@ -1,4 +1,4 @@
-import Product from './classes/product.js'
+import Product from './classes/Product.js'
 import { addToCart, createCartProducts, notice } from './cart.js';
 
 let products = []
