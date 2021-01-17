@@ -51,17 +51,17 @@ export function createCartProducts() {
 
         $('<div>').addClass('c-image').html(cartProduct.image).appendTo(cartID)
         $('<h3>').addClass('c-name').html(cartProduct.name).appendTo(cartID)
-        $('<h2>').addClass('c-price').html(cartProduct.price).appendTo(cartID)
+        $('<h2>').addClass('c-price').html(cartProduct.price * cartProduct.amount).appendTo(cartID)
+
+        let amountMinus = $('<button>').addClass('c-minus').html("-").appendTo(cartID)
+        amountMinus.on('click', {minus: cartProduct, cartIndex: i}, minusAmount)   
 
         $('<h2>').addClass('c-amount').html(cartProduct.amount).appendTo(cartID)
-
+        
         let amountPlus = $('<button>').addClass('c-plus').html("+").appendTo(cartID)
         amountPlus.on('click', {plus: cartProduct}, plusAmount)
 
-        let amountMinus = $('<button>').addClass('c-minus').html("-").appendTo(cartID)
-        amountMinus.on('click', {minus: cartProduct, cartIndex: i}, minusAmount)    
-
-        let deleteFromCart = $('<button>').addClass('delete-from-cart').html("Delete").appendTo(cartID)
+        let deleteFromCart = $('<button>').addClass('delete-from-cart').html('<img src="./img/bin.png" />').appendTo(cartID)
         deleteFromCart.on('click', {c: i}, clickDeleteCartProducts) 
         // sending 'i' as the index of the array. cannot sending in the whole thing as cartProduct[i] 
         // because that contains a whole thing as an object in an array. Splice works with array, means just the index
