@@ -51,7 +51,6 @@ export function createCartProducts() {
 
         $('<div>').addClass('c-image').html(cartProduct.image).appendTo(cartID)
         $('<h3>').addClass('c-name').html(cartProduct.name).appendTo(cartID)
-        $('<h2>').addClass('c-price').html(cartProduct.price * cartProduct.amount).appendTo(cartID)
 
         let amountMinus = $('<button>').addClass('c-minus').html("-").appendTo(cartID)
         amountMinus.on('click', {minus: cartProduct, cartIndex: i}, minusAmount)   
@@ -60,6 +59,8 @@ export function createCartProducts() {
         
         let amountPlus = $('<button>').addClass('c-plus').html("+").appendTo(cartID)
         amountPlus.on('click', {plus: cartProduct}, plusAmount)
+
+        $('<h2>').addClass('c-price').html(cartProduct.price * cartProduct.amount).appendTo(cartID)
 
         let deleteFromCart = $('<button>').addClass('delete-from-cart').html('<img src="./img/bin.png" />').appendTo(cartID)
         deleteFromCart.on('click', {c: i}, clickDeleteCartProducts) 
