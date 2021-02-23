@@ -110,7 +110,7 @@
     }
 
     #cart-container {
-      width: 30%;
+      width: 100%;
       display: inline-block;
 
       h1 {
@@ -136,6 +136,7 @@
             align-items: center;
 
             .c-image {
+              margin-right: 10px;
 
                 img {
                     width: 60px;

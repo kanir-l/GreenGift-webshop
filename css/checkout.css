@@ -76,7 +76,7 @@
         .checkout-container #userinfo-container .exp-holder .expmonth #expmonth, .checkout-container #userinfo-container .exp-holder .expmonth #expyear, .checkout-container #userinfo-container .exp-holder .expyear #expmonth, .checkout-container #userinfo-container .exp-holder .expyear #expyear {
           width: 99%; }
   .checkout-container #cart-container {
-    width: 30%;
+    width: 100%;
     display: inline-block; }
     .checkout-container #cart-container h1 {
       background: #645348;
@@ -98,7 +98,8 @@
         .checkout-container #cart-container #cart-list .c-id .c-image img {
           width: 60px;
           padding: 10px;
-          border: solid 1px #d6d6d6; }
+          border: solid 1px #d6d6d6;
+          margin-right: 10px; }
         .checkout-container #cart-container #cart-list .c-id .c-name {
           width: 45%;
           font-size: 16px; }
