@@ -32,7 +32,8 @@ section {
       #product-container #product-list .p-id img {
         width: 200px;
         padding: 20px;
-        border: solid 1px #d6d6d6; }
+        border: solid 1px #d6d6d6;
+        box-sizing: border-box; }
       #product-container #product-list .p-id .add-to-cart {
         width: 100px;
         height: 30px;

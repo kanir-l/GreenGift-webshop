@@ -11,6 +11,7 @@
       crossorigin="anonymous"
     ></script>
     <script type="module" src="./js/cart.js"></script>
+    <script type="module" src="./js/checkout.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100&display=swap" rel="stylesheet">
@@ -42,11 +43,16 @@
     </header>
 
     <!--Hero-->
-    <div class="hero-image-product">
+    <div class="hero-image-checkout">
     </div>
 
     <section class = "checkout-container">
       <div id="userinfo-container">
+        <!--Cart-->
+        <div id = "cart-container" class = "cart-container">
+          <h1 class = "cart-text-head">Your Shopping Cart</h1>
+          <div id = "cart-list"></div>
+        </div>
 
         <!--Billing Info-->
         <form id="userform">
@@ -108,7 +114,7 @@
               <input
                 pattern="\d*"
                 type="text"
-                id="post"
+                id="postcode"
                 name="post"
                 value=""
                 required
@@ -120,7 +126,7 @@
               <input
                 pattern="[^0-9]+"
                 type="text"
-                id="post"
+                id="postcode"
                 name="town"
                 value=""
                 required
@@ -176,12 +182,6 @@
 
           </div>
         </div>
-      </div>
-
-      <!--Cart-->
-      <div id = "cart-container" class = "cart-container">
-        <h1 class = "cart-text-head">Your Shopping Cart</h1>
-        <div id = "cart-list"></div>
       </div>
     </section>
 
