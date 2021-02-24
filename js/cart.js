@@ -135,3 +135,6 @@ export function notice() {
       
     $('.notice').html(set)
 }
+
+
+
